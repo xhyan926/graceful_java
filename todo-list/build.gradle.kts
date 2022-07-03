@@ -1,5 +1,8 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id("java")
+    id("org.springframework.boot") version "2.7.1"
 }
 
 group = "com.xhyan.zero"
@@ -12,10 +15,12 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter:2.7.1")
-    implementation("org.springframework.boot:spring-boot-starter-web:2.7.1")
-    implementation("org.springframework.boot:spring-boot-starter-actuator:2.7.1")
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     //测试依赖库
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(platform("org.junit:junit-bom:5.8.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
